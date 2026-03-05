@@ -1,0 +1,1 @@
+/usr/lib64/ccache/cc -Wl,--dependency-file=CMakeFiles/vulkan_app.dir/link.d CMakeFiles/vulkan_app.dir/src/main.c.o -o vulkan_app  -Wl,-rpath,/home/ffg/vulkanSDK/1.4.341.1/x86_64/lib /home/ffg/vulkanSDK/1.4.341.1/x86_64/lib/libvulkan.so /usr/lib64/libglfw.so.3.4

@@ -1,0 +1,3 @@
+/home/ffg/funsies/clone-repos/vulkan-triangle/build/CMakeFiles/vulkan_app.dir
+/home/ffg/funsies/clone-repos/vulkan-triangle/build/CMakeFiles/edit_cache.dir
+/home/ffg/funsies/clone-repos/vulkan-triangle/build/CMakeFiles/rebuild_cache.dir
