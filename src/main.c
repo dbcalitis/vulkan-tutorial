@@ -9,20 +9,35 @@
 const uint32_t WIDTH = 800;
 const uint32_t HEIGHT = 600;
 
+VkInstance instance;
+
+void
+createInstance(void)
+{
+    VkApplicationInfo appInfo = {};
+    appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+    appInfo.pApplicationName = "Hello Triangle";
+    appInfo.applicationVersion = VK_MAKE_VERSION(1,0,0);
+    appInfo.pEngineName = "No Engine";
+    appInfo.engineVersion = VK_MAKE_VERSION(1,0,0);
+    appInfo.apiVersion = VK_API_VERSION_1_0;
+
+    VkInstanceCreateInfo createInfo = {};
+    createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+    createInfo.pApplicationInfo = &appInfo;
+
+    if(vkCreateInstance(&createInfo, NULL, &instance) != VK_SUCCESS)
+    {
+        printf("Failed to create instance\n");
+        exit(EXIT_FAILURE);
+    }
+}
+
 GLFWwindow *window;
 
 void
 initWindow(void)
 {
-    if(glfwInit() != GLFW_TRUE)
-    {
-        printf("GLFW initialization failed\n");
-        exit(EXIT_FAILURE);
-    }
-
-    // DISPLAY SERVER
-    glfwInitHint(GLFW_PLATFORM, GLFW_PLATFORM_WAYLAND);
-
     glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
@@ -56,8 +71,9 @@ void
 cleanup(void)
 {
     glfwDestroyWindow(window);
-
     glfwTerminate();
+
+    vkDestroyInstance(instance, NULL);
 }
 
 int
@@ -68,7 +84,6 @@ main()
     initWindow();
 
     glfwShowWindow(window);
-    glfwSwapBuffers(window);
 
     mainLoop();
 
